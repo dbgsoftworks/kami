@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kami Language Documentation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #e0e0e0;
+            background-color: #1a1a1a;
+            margin: 0;
+            padding: 0;
+            transition: all 0.3s ease;
+        }
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.5s ease forwards;
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        h1, h2, h3 {
+            color: #61dafb;
+        }
+        a {
+            color: #61dafb;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #ffffff;
+        }
+        code {
+            background-color: #2a2a2a;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        pre {
+            background-color: #2a2a2a;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+        .hljs {
+            background: transparent;
+        }
+        #content {
+            flex-grow: 1;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.5s ease forwards 0.3s;
+        }
+        .toc {
+            position: sticky;
+            top: 20px;
+            background-color: #2a2a2a;
+            padding: 15px;
+            border-radius: 8px;
+            max-width: 250px;
+            margin-right: 20px;
+            height: fit-content;
+        }
+        .toc ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .toc li {
+            margin-bottom: 10px;
+        }
+        .toc a {
+            color: #61dafb;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .toc a:hover {
+            color: #ffffff;
+        }
+        .get-kami {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #61dafb;
+            color: #1a1a1a;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .get-kami:hover {
+            background-color: #ffffff;
+        }
+        @media (max-width: 1200px) {
+            .container {
+                flex-direction: column;
+            }
+            .toc {
+                position: static;
+                max-width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="get.html" class="get-kami">Get Kami ></a>
+    <div class="container">
+        <div id="toc" class="toc"></div>
+        <div id="content"></div>
+    </div>
+    <script>
+        const markdown = `
+# Kami Language Documentation
+
+Kami is a JavaScript superset designed to simplify coding with custom syntax and built-in functions. This document outlines the key features and syntax of Kami.
+
+## Table of Contents
+
+1. [File Extension](#file-extension)
+2. [Running Kami Code](#running-kami-code)
+3. [Variables](#variables)
+4. [Data Types](#data-types)
+5. [Functions](#functions)
+6. [Control Flow](#control-flow)
+7. [Error Handling](#error-handling)
+8. [Built-in Functions](#built-in-functions)
+
+## File Extension
+
+Kami files use the \`.ki\` extension.
+
+## Running Kami Code
+
+To run Kami code, use the \`ki.js\` interpreter:
+
+\`\`\`bash
+node ki.js                 # Interactive mode
+node ki.js filename.ki     # Run a Kami file
+\`\`\`
+
+## Variables
+
+Variables are declared using the \`let\` keyword:
+
+\`\`\`kami
+let name = "Alice"
+let age = 30
+\`\`\`
+
+## Data Types
+
+Kami supports the following data types:
+
+- Strings
+- Numbers
+- Booleans
+- Arrays
+- Objects
+
+Type conversion:
+\`\`\`kami
+let strNum = "42"
+let num = int.strNum()
+\`\`\`
+
+## Functions
+
+Functions are defined using the \`fn\` keyword:
+
+\`\`\`kami
+fn greet(str name) {
+    print("Hello, {name}!")
+}
+
+greet("Alice")
+\`\`\`
+
+Functions can have optional parameters:
+
+\`\`\`kami
+fn greet(str name, str greeting) {
+    if (greeting) {
+        print("{greeting}, {name}!")
+    } el {
+        print("Hello, {name}!")
+    }
+}
+
+greet("Bob")
+greet("Alice", "Good morning")
+\`\`\`
+
+## Control Flow
+
+### Conditionals
+
+Kami uses \`if\`, \`elif\`, and \`el\` for conditionals:
+
+\`\`\`kami
+let x = 10
+
+if (x > 15) {
+    print("x is greater than 15")
+} elif (x > 5) {
+    print("x is greater than 5 but not greater than 15")
+} el {
+    print("x is 5 or less")
+}
+\`\`\`
+
+### Loops
+
+Kami uses \`loop\` for loops:
+
+\`\`\`kami
+loop (let i = 0; i < 5; i++) {
+    print(i)
+}
+\`\`\`
+
+### Switch Statements
+
+Kami uses \`sw\` for switch statements:
+
+\`\`\`kami
+let day = 3
+
+sw (day) {
+    case 1:
+        print("Monday")
+        break
+    case 2:
+        print("Tuesday")
+        break
+    case 3:
+        print("Wednesday")
+        break
+    default:
+        print("Other day")
+}
+\`\`\`
+
+## Error Handling
+
+Kami uses \`atm\` for try and \`grab\` for catch:
+
+\`\`\`kami
+atm {
+    let result = dangerousOperation()
+    print("Operation successful: {result}")
+} grab (error) {
+    print("An error occurred: {error.message}")
+}
+\`\`\`
+
+## Built-in Functions
+
+### print()
+
+Outputs text to the console:
+
+\`\`\`kami
+print("Hello, World!")
+\`\`\`
+
+### input()
+
+Reads user input:
+
+\`\`\`kami
+let name = input()
+print("Hello, {name}!")
+\`\`\`
+
+### ocombine()
+
+Performs arithmetic operations:
+
+\`\`\`kami
+let sum = ocombine("+", 5, 3)
+let product = ocombine("*", 4, 7)
+\`\`\`
+
+### int.variableName()
+
+Converts a string to an integer:
+
+\`\`\`kami
+let strNum = "42"
+let num = int.strNum()
+\`\`\`
+
+This documentation covers the basic features of Kami. As the language evolves, more features and built-in functions may be added.
+        `;
+
+        document.getElementById('content').innerHTML = marked.parse(markdown);
+        hljs.highlightAll();
+
+        // Generate Table of Contents
+        const toc = document.getElementById('toc');
+        const headers = document.querySelectorAll('#content h2, #content h3');
+        const tocList = document.createElement('ul');
+
+        headers.forEach(header => {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.textContent = header.textContent;
+            // Generate a valid id if none exists
+            if (!header.id) {
+                header.id = header.textContent.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+            }
+            a.href = `#${header.id}`;
+            li.appendChild(a);
+            tocList.appendChild(li);
+        });
+
+        toc.appendChild(tocList);
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                if (targetId) {
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
